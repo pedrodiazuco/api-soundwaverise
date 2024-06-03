@@ -1,9 +1,5 @@
 import pkg from 'pg'; ///Importamos el cliente pg
-import dotenv from 'dotenv';
 const { Pool } = pkg; //Añadimos a pool
-
-
-dotenv.config();
 
 //Configuramos la conexión a la base de datos localhost
 /*
