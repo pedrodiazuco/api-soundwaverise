@@ -1,13 +1,9 @@
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import dotenv from 'dotenv';
 import pkg from 'pg'; ///Importamos el cliente pg
+import dotenv from 'dotenv';
 const { Pool } = pkg; //Añadimos a pool
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-dotenv.config({ path: `${__dirname}/../.env` });
+dotenv.config();
 
 //Configuramos la conexión a la base de datos localhost
 /*

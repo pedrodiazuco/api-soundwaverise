@@ -29,7 +29,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 // Middleware de configuración de CORS
 const corsOptions = {
-    origin: 'http://localhost:5173',  // Asegúrate de reemplazar esto con el dominio correcto de tu frontend
+    origin: 'https://git.heroku.com/soundwaverise.git',
+    //origin: 'http://localhost:5173',  // Asegúrate de reemplazar esto con el dominio correcto de tu frontend
     credentials: true,  // Permitir el envío de cookies y headers de autorización
     optionsSuccessStatus: 200 // Algunos navegadores antiguos (IE11, varios SmartTVs) fallan en 204
 };
