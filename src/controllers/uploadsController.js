@@ -1,7 +1,36 @@
 import { bucket } from '../libs/firebase.js';
 import { getStorage } from 'firebase-admin/storage';
 
-/*------ SUBIR LA IMAGEN DEL USUARIO A FIREBASE ------*/
+
+const uploadUserImageToFirebase = async (req, res) => {
+  console.log("Subiendo imagen de usuario");
+  console.log(req.file);
+  if (!req.file) {
+    return res.status(400).json('No file uploaded.');
+  }
+  const blob = bucket.file(`profile_images/${req.file.originalname}`);
+  const blobStream = blob.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype,
+      predefinedAcl: 'publicRead'
+    }
+  });
+
+  blobStream.on('error', err => {
+    console.error("Error durante la subida del archivo:", err);
+    return res.status(500).json({ message: 'Error uploading the file!', details: err.toString() });
+  });
+
+  blobStream.on('finish', () => {
+    const publicImageUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+    console.log('URL en uploadUserImageToFirebase:', publicImageUrl);
+    return res.status(200).json({ publicImageUrl });
+  });
+
+  blobStream.end(req.file.buffer);
+};
+
+/*------ SUBIR LA IMAGEN DEL USUARIO A FIREBASE ------
 const uploadUserImageToFirebase = async (req, res) => {
   console.log("Subiendo imagen de usuario");
   console.log(req.file);
@@ -40,7 +69,7 @@ const uploadUserImageToFirebase = async (req, res) => {
     console.json('Error uploading to Firebase:', error);
     return res.status(500).json('Error uploading to Firebase');
   }
-};
+};*/
 
 /*------ SUBIR LA IMAGEN DEL TRACK A FIREBASE ------*/
 const uploadTrackImageToFirebase = async (req, res) => {
