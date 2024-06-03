@@ -48,7 +48,7 @@ const signIn = async (req, res) => {
                     maxAge: 24 * 60 * 60 * 1000 // 24 horas en milisegundos
                 });
                 console.log('Enviando cookie:')
-                console.log(res.cookies);
+                console.log(res.cookie);
                 return res.status(200).json({ user: dataSession });
             }
         }
