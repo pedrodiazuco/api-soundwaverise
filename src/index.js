@@ -21,11 +21,6 @@ const app = express();
 const PORT = process.env.NODE_ENV === 'production' ? (process.env.PORT || 3000) : 5001;
 //const PORT = process.env.PORT || 3000;
 
-console.log('FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID);
-console.log('FIREBASE_PRIVATE_KEY:', process.env.FIREBASE_PRIVATE_KEY);
-console.log('FIREBASE_CLIENT_EMAIL:', process.env.FIREBASE_CLIENT_EMAIL);
-console.log('FIREBASE_STORAGE_BUCKET:', process.env.FIREBASE_STORAGE_BUCKET);
-
 //MIDDLEWARES PRINCIPALES
 // Middleware para manejar solicitudes JSON
 app.use(express.json());

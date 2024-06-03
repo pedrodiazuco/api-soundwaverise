@@ -1,17 +1,24 @@
-import dotenv from 'dotenv';
 import admin from 'firebase-admin';
 
-dotenv.config();
+const privateKey = process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : null;
+if (!privateKey) {
+    console.error('Falta la clave privada de Firebase.');
+    process.exit(1);
+}
 
-console.log('Clave en la conexión a firebase:' + process.env.FIREBASE_PRIVATE_KEY);
-admin.initializeApp({
+try {
+    admin.initializeApp({
         credential: admin.credential.cert({
-        projectId: process.env.FIREBASE_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-        privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
-    }),
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-});
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+            privateKey: privateKey
+        }),
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET
+    });
+    console.log('Firebase ha sido inicializado correctamente.');
+} catch (error) {
+    console.error('Error inicializando Firebase:', error);
+}
 
 const bucket = admin.storage().bucket();
 
