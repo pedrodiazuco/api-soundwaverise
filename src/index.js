@@ -18,7 +18,8 @@ dotenv.config({ path: `${__dirname}/../.env` });
 
 //INICIALIZACIÓNES PRINCIPALES
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_ENV === 'production' ? (process.env.PORT || 3000) : 5001;
+//const PORT = process.env.PORT || 3000;
 
 
 //MIDDLEWARES PRINCIPALES
@@ -42,12 +43,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/superAdmin', superAdminRoutes);
 app.use('/api/tracks', tracksRoutes);
 app.use('/api/upload', uploadsRoutes);
-
-//Para servir los archivos estáticos a VITE
-app.use(express.static('build'));
-app.get(/.*/, (req, res) => {
-    res.sendFile(__dirname + '/build/index.html');
-});
 
 // Manejo de errores
 app.use((err, req, res, next) => {
