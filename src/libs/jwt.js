@@ -1,5 +1,8 @@
 // General imports
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 // Function to provide user token
