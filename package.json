@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src --out-dir build",
     "dev": "nodemon src/index.js --exec babel-node",
-    "start": "node src/index.js"
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",
@@ -36,5 +36,8 @@
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.0",
     "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": "20.9.0"
   }
 }
