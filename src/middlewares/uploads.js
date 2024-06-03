@@ -8,11 +8,11 @@ const storage = multer.memoryStorage();  // Almacenamos los archivos en la memor
 
 // Filtro de archivo para validar si el archivo es una imagen o un archivo de audio
 const fileFilter = (req, file, cb) => {
-  // Permite tipos de archivo específicos
   const allowedTypes = ['image/jpeg', 'audio/mp3'];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
-  } else {
+  } 
+  else {
     cb(new Error('Invalid file type. Only PNG and MP3 are allowed.'));
   }
 };

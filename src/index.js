@@ -1,6 +1,8 @@
 //IMPORTACIONES GENERALES
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import dotenv from 'dotenv';
 import express from 'express'; //Para importar express
-import dotenv from 'dotenv'; // Para importar las variables de entorno
 import morgan from 'morgan'; //Para importar morgan
 import cors from 'cors'; 
 import cookieParser from 'cookie-parser'
@@ -10,10 +12,14 @@ import superAdminRoutes from './routes/superAdminRoutes.js';
 import tracksRoutes from './routes/tracksRoutes.js';
 import uploadsRoutes from './routes/uploadsRoutes.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: `${__dirname}/../.env` });
+
 //INICIALIZACIÓNES PRINCIPALES
 const app = express();
-dotenv.config();
 const PORT = process.env.PORT || 3000;
+
 
 //MIDDLEWARES PRINCIPALES
 // Middleware para manejar solicitudes JSON
@@ -36,6 +42,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/superAdmin', superAdminRoutes);
 app.use('/api/tracks', tracksRoutes);
 app.use('/api/upload', uploadsRoutes);
+
+//Para servir los archivos estáticos a VITE
+app.use(express.static('build'));
+app.get(/.*/, (req, res) => {
+    res.sendFile(__dirname + '/build/index.html');
+});
 
 // Manejo de errores
 app.use((err, req, res, next) => {

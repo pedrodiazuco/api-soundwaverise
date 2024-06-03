@@ -5,8 +5,8 @@ import { setSuperAdminOneUserIntoDatabase } from '../models/superAdminModel.js';
 import { getOneUserByNicknameFromDatabase } from '../models/usersModel.js';
 import { getAllTracksByUserIdFromDatabase } from "../models/tracksModel.js";
 import { deleteOneTrackFromDatabase } from "../models/tracksModel.js";
-import { deleteFileInFirebase } from "./uploadsController";
-import { getFirebasePathFromUrl } from "./uploadsController";
+import { deleteFileInFirebase } from "./uploadsController.js";
+import { getFirebasePathFromUrl } from "./uploadsController.js";
 
 
 /*----- CONTROLADORES -----*/ 

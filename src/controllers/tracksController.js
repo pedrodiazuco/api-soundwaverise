@@ -3,23 +3,23 @@ import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 
 /*///////// IMPORTACIONES ////////*/
-import { getAllTracksFromDatabase } from "../models/tracksModel";
-import { getOneTrackByIdFromDatabase } from "../models/tracksModel";
-import { getAllTracksByUserIdFromDatabase } from "../models/tracksModel";
-import { insertTrackIntoDatabase } from "../models/tracksModel";
-import { updateTrackFromDatabase } from "../models/tracksModel";
-import { deleteOneTrackFromDatabase } from "../models/tracksModel";
-import { incrementPlaysOneTrackFromDatabase } from "../models/tracksModel";
-import { checkIfLikeExistsIntoDatabase } from '../models/tracksModel';
-import { createLikeIntoDatabase } from "../models/tracksModel";
-import { createCommentIntoDatabase } from '../models/tracksModel';
-import { getCommentsByTrackIdFromDataBase } from "../models/tracksModel";
-import { checkIfUserHasCommentedOneTrackFromDatabase } from "../models/tracksModel";
+import { getAllTracksFromDatabase } from "../models/tracksModel.js";
+import { getOneTrackByIdFromDatabase } from "../models/tracksModel.js";
+import { getAllTracksByUserIdFromDatabase } from "../models/tracksModel.js";
+import { insertTrackIntoDatabase } from "../models/tracksModel.js";
+import { updateTrackFromDatabase } from "../models/tracksModel.js";
+import { deleteOneTrackFromDatabase } from "../models/tracksModel.js";
+import { incrementPlaysOneTrackFromDatabase } from "../models/tracksModel.js";
+import { checkIfLikeExistsIntoDatabase } from '../models/tracksModel.js';
+import { createLikeIntoDatabase } from "../models/tracksModel.js";
+import { createCommentIntoDatabase } from '../models/tracksModel.js';
+import { getCommentsByTrackIdFromDataBase } from "../models/tracksModel.js";
+import { checkIfUserHasCommentedOneTrackFromDatabase } from "../models/tracksModel.js";
 /*///////// IMPORTACIONES EXTERNAS////////*/
-import { findUserByIdIntoDatabase } from "../models/authModel";
-import { getUserByToken } from "./authController";
-import { deleteFileInFirebase } from "./uploadsController";
-import { getFirebasePathFromUrl } from "./uploadsController";
+import { findUserByIdIntoDatabase } from "../models/authModel.js";
+import { getUserByToken } from "./authController.js";
+import { deleteFileInFirebase } from "./uploadsController.js";
+import { getFirebasePathFromUrl } from "./uploadsController.js";
 
 
 

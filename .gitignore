@@ -1,4 +1,6 @@
 node_modules
 .env
+babel.config.js
 soundwave-rise-firebase-adminsdk-m2an6-e5bc72d8eb.json
 sound-wave-rise-heroku.json
+testFirebaseUpload.js

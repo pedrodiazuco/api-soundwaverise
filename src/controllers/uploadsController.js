@@ -1,5 +1,5 @@
 import { bucket } from '../libs/firebase.js';
-const { getStorage } = require('firebase-admin/storage');
+import { getStorage } from 'firebase-admin/storage';
 
 /*------ SUBIR LA IMAGEN DEL USUARIO A FIREBASE ------*/
 const uploadUserImageToFirebase = async (req, res) => {
@@ -121,7 +121,7 @@ const uploadTrackAudioToFirebase = async (req, res) => {
     }
 };
 
-
+/*------ OBTENER EL PATH DEL ARCHIVO DE FIREBASE DESDE LA URL ------*/
 const getFirebasePathFromUrl = (url) => {
   try {
     const urlObj = new URL(url);
@@ -144,7 +144,7 @@ const getFirebasePathFromUrl = (url) => {
 };
 
 
-/*------ ELIMINAR UN ARCHIVO EN FIREBASE------*/
+/*------ ELIMINAR UN ARCHIVO EN FIREBASE ------*/
 const deleteFileInFirebase = async (filePath) => {
   const decodedFilePath = decodeURIComponent(filePath);
   console.log("Attempting to delete file at:", decodedFilePath);
