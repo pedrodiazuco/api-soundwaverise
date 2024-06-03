@@ -47,7 +47,6 @@ const signIn = async (req, res) => {
                     sameSite: 'strict', // Esto puede ser 'lax' o 'strict'
                     maxAge: 24 * 60 * 60 * 1000 // 24 horas en milisegundos
                 });
-                console.log('Cookie configurada: ', req.cookies.token);
                 return res.status(200).json({ user: dataSession });
             }
         }
