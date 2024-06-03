@@ -3,6 +3,7 @@ import { getStorage } from 'firebase-admin/storage';
 
 /*------ SUBIR LA IMAGEN DEL USUARIO A FIREBASE ------*/
 const uploadUserImageToFirebase = async (req, res) => {
+  console.log("Subiendo imagen de usuario");
   console.log(req.file);
   if (!req.file) {
     return res.status(400).json('No file uploaded.');

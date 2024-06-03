@@ -3,7 +3,7 @@ import admin from 'firebase-admin';
 
 dotenv.config();
 
-console.log(process.env.FIREBASE_PRIVATE_KEY);
+console.log('Clave en la conexión a firebase:' + process.env.FIREBASE_PRIVATE_KEY);
 admin.initializeApp({
         credential: admin.credential.cert({
         projectId: process.env.FIREBASE_PROJECT_ID,
