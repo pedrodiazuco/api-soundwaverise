@@ -43,8 +43,9 @@ const signIn = async (req, res) => {
                 }
                 res.cookie('token', token, {
                     httpOnly: true,
-                    secure: process.env.NODE_ENV === 'production', // Usar 'secure' solo en producción
-                    sameSite: 'strict', // Esto puede ser 'lax' o 'strict'
+                    //secure: process.env.NODE_ENV === 'production', // Usar 'secure' solo en producción
+                    secure: true,
+                    sameSite: 'none', // Esto puede ser 'lax' o 'strict'
                     maxAge: 24 * 60 * 60 * 1000 // 24 horas en milisegundos
                 });
                 return res.status(200).json({ user: dataSession });
