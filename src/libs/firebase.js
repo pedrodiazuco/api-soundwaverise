@@ -1,10 +1,13 @@
 import admin from 'firebase-admin';
 
 const privateKey = process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : null;
+
 if (!privateKey) {
     console.error('Falta la clave privada de Firebase.');
     process.exit(1);
 }
+
+console.log("Clave Privada:", privateKey); // Esto te ayudará a verificar la clave directamente antes de la inicialización
 
 try {
     admin.initializeApp({
@@ -23,6 +26,7 @@ try {
 const bucket = admin.storage().bucket();
 
 export { bucket };
+
 
 
 /* 
