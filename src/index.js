@@ -1,7 +1,5 @@
 //IMPORTACIONES GENERALES
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import dotenv from 'dotenv';
+import { bucket } from './libs/firebase.js';
 import express from 'express'; //Para importar express
 import morgan from 'morgan'; //Para importar morgan
 import cors from 'cors'; 
@@ -11,10 +9,6 @@ import authRoutes from './routes/authRoutes.js';
 import superAdminRoutes from './routes/superAdminRoutes.js';
 import tracksRoutes from './routes/tracksRoutes.js';
 import uploadsRoutes from './routes/uploadsRoutes.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-dotenv.config({ path: `${__dirname}/../.env` });
 
 //INICIALIZACIÓNES PRINCIPALES
 const app = express();
