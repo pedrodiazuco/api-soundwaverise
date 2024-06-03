@@ -16,7 +16,7 @@ router.post('/signIn', signIn);
 /*------ REGISTRO DE USUARIO /api/auth/signUp ------*/
 router.post('/signUp', signUp);
 /*------ OBTENER EL USUARIO DE LA SESIÓN POR SU TOKEN /api/auth/user ------*/
-router.get('/user', protect, getUserByToken)
+router.get('/user', protect, getUserByToken);
 /*------ CIERRE DE SESIÓN /api/auth/signOut ------*/
 router.post('/signOut', signOut);
 

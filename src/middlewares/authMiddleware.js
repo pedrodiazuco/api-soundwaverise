@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 const protect = (req, res, next) => {
     try {
         const token = req.cookies.token;
+        console.log(req.cookies);
         console.log('TOKEN RECIBIDO EN PROTECT: ' + token);
         if (!token) {
             return res.status(401).json({ message: "No autorizado, token no encontrado" });
