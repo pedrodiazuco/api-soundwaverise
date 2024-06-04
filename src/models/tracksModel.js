@@ -268,7 +268,6 @@ export {
     getOneTrackByIdFromDatabase,
     insertTrackIntoDatabase,
     deleteOneTrackFromDatabase,
-    updateTrackFromDatabase,
     incrementPlaysOneTrackFromDatabase,
     checkIfLikeExistsIntoDatabase,
     createLikeIntoDatabase,
