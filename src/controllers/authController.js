@@ -45,7 +45,7 @@ const signIn = async (req, res) => {
                     httpOnly: true,
                     //secure: process.env.NODE_ENV === 'production', // Usar 'secure' solo en producción
                     secure: true,
-                    sameSite: 'none', // Esto puede ser 'lax' o 'strict'
+                    sameSite: 'None', // Esto puede ser 'lax' o 'strict'
                     maxAge: 24 * 60 * 60 * 1000 // 24 horas en milisegundos
                 });
                 return res.status(200).json({ user: dataSession });
@@ -104,7 +104,7 @@ const signUp = async (req, res) => {
                 httpOnly: true,
                 //secure: process.env.NODE_ENV === 'production', // Usar 'secure' solo en producción
                 secure: true,
-                sameSite: 'none', // Esto es importante si tu frontend y backend no comparten el mismo dominio top-level
+                sameSite: 'None', // Esto es importante si tu frontend y backend no comparten el mismo dominio top-level
                 maxAge: 24 * 60 * 60 * 1000 // 24 horas en milisegundos
             });
 
