@@ -129,7 +129,7 @@ const deleteOneTrack = async (req, res) => {
         }
         const userInSession = await findUserByIdIntoDatabase(decoded.id);
 
-        if (trackFound.user_id !== userInSession.user_id & userInSession.role !== 'superAdmin'){
+        if (trackFound.user_id !== userInSession.user_id && userInSession.role !== 'superAdmin'){
             console.log('No eres el usuario indicado para eliminar un track.');
             return res.status(500).json({ message: 'No tienes acceso para eliminar el track.', error: error.message });
         }
