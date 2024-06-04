@@ -11,7 +11,6 @@ import { checkIfUserHasLikedOneTrack } from "../controllers/tracksController.js"
 import { createNewComment } from "../controllers/tracksController.js";
 import { getAllCommentsByTrackId } from "../controllers/tracksController.js";
 import { checkIfUserHasCommentedOneTrack } from "../controllers/tracksController.js";
-import { downloadTrack } from "../controllers/tracksController.js";
 import protect from '../middlewares/authMiddleware.js';
 
 /*///////// MIDDLEWARE MANEJADOR DE RUTAS ////////*/
@@ -40,8 +39,6 @@ router.get('/comments/:id', getAllCommentsByTrackId);
 router.post('/userHasLiked/:id', protect, checkIfUserHasLikedOneTrack);
 /*------ COMPROBAR SI UN USUARIO HA COMENTADO UN TRACK ------*/
 router.post('/userHasCommented/:id', protect, checkIfUserHasCommentedOneTrack);
-/*------ DESCARGAR UN TRACK ------*/
-router.post('/download/:id', protect, downloadTrack);
 
 
 

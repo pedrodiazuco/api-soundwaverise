@@ -8,7 +8,6 @@ import { getAllTracksFromDatabase } from "../models/tracksModel.js";
 import { getOneTrackByIdFromDatabase } from "../models/tracksModel.js";
 import { getAllTracksByUserIdFromDatabase } from "../models/tracksModel.js";
 import { insertTrackIntoDatabase } from "../models/tracksModel.js";
-import { updateTrackFromDatabase } from "../models/tracksModel.js";
 import { deleteOneTrackFromDatabase } from "../models/tracksModel.js";
 import { incrementPlaysOneTrackFromDatabase } from "../models/tracksModel.js";
 import { checkIfLikeExistsIntoDatabase } from '../models/tracksModel.js';
@@ -324,26 +323,6 @@ const checkIfUserHasCommentedOneTrack = async (req, res) => {
     }
 };
 
-async function downloadTrack(req, res) {
-    try {
-        const { trackId } = req.params;
-        const track = await TrackModel.findById(trackId); // Suponiendo que usas Mongoose
-        if (!track) {
-            return res.status(404).send('Track con el id proporcionado no encontrado.');
-        }
-        const filename = `${track.title.replace(/[^a-zA-Z0-9]/g, '_')}.mp3`;
-        const fileStream = bucket.file(track.audioPath).createReadStream();
-        res.setHeader('Content-Type', 'audio/mpeg');
-        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-        fileStream.pipe(res);
-    } catch (error) {
-        console.error('Error al descargar el track.');
-        return res.status(500).json({ message: 'Error del servidor.', error: error.message });
-    }
-};
-
-
-
 /*///////// EXPORTACIONES ////////*/
 export {
     getAllTracks,
@@ -357,5 +336,4 @@ export {
     createNewComment,
     getAllCommentsByTrackId,
     checkIfUserHasCommentedOneTrack,
-    downloadTrack
 };
