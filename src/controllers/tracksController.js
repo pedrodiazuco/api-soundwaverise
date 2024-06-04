@@ -349,7 +349,6 @@ export {
     getAllTracks,
     getAllTrackskByUserId,
     getOneTrackById,
-    updateOneTrack,
     createNewTrack,
     deleteOneTrack,
     incrementPlaysOneTrack,

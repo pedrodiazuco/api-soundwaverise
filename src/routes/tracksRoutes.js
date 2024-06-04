@@ -5,7 +5,6 @@ import { getAllTrackskByUserId } from "../controllers/tracksController.js";
 import { getOneTrackById } from "../controllers/tracksController.js";
 import { createNewTrack } from "../controllers/tracksController.js";
 import { deleteOneTrack } from "../controllers/tracksController.js";
-import { updateOneTrack } from "../controllers/tracksController.js";
 import { incrementPlaysOneTrack } from "../controllers/tracksController.js";
 import { createNewLike } from "../controllers/tracksController.js";
 import { checkIfUserHasLikedOneTrack } from "../controllers/tracksController.js";
@@ -29,8 +28,6 @@ router.get('/track/:id', getOneTrackById);
 router.post('/createTrack', protect, createNewTrack);
 /*------ ELIMINAR UN TRACK POR SU ID ------*/
 router.post('/deleteTrack/:id', protect, deleteOneTrack);
-/*------ ACTUALIZAR UN TRACK POR SU ID ------*/
-router.post('/updateTrack/:id', protect, updateOneTrack);
 /*------ CREAR UN LIKE POR EL ID DEL TRACK ------*/
 router.post('/incrementPlays/:id', incrementPlaysOneTrack);
 /*------ CREAR UN LIKE POR EL ID DEL TRACK ------*/

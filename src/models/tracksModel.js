@@ -140,23 +140,6 @@ const deleteOneTrackFromDatabase = async (track_id) => {
     } finally {
         client.release();  
     }
-}
-
-/*------ ACTUALIZAR UN TRACK DE LA BASE DE DATOS POR SU ID ------*/
-const updateTrackFromDatabase = async (track_id, updatedTrackData) => {
-    const client = await pool.connect();
-    try {
-        const {title, genre, cover_url, description} = updatedTrackData;
-        await client.query(
-            `UPDATE tracks SET title = $2, genre = $3, cover_url = $4, description = $5 WHERE id = $1`,
-            [track_id, title, genre, cover_url, description]
-        );
-    } catch (error) {
-        console.error('Error al actualizar un track en la BD:', error);
-        throw error;
-    } finally {
-        client.release();
-    }
 };
 
 /*------ INCREMNETAR PLAYS DE UN TRACK DE LA BASE DE DATOS POR SU ID ------*/
