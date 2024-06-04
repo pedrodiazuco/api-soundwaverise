@@ -1,6 +1,7 @@
 /*------ IMPORTACIONES DE MÓDULOS ------*/
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
+import { bucket } from "../libs/firebase.js";
 
 /*///////// IMPORTACIONES ////////*/
 import { getAllTracksFromDatabase } from "../models/tracksModel.js";
@@ -157,44 +158,6 @@ const deleteOneTrack = async (req, res) => {
     } 
     catch (error) {
         console.log('Error del controlador al eliminar un track:', error);
-        return res.status(500).json({ message: 'Error del servidor.', error: error.message });
-    }
-};
-
-/*------ ACTUALIZAR UN TRACK CON LOS DATOS QUE RECIBE POR SU ID ------*/
-const updateOneTrack = async (req, res) => {
-    const track_id = req.params.id;
-    const { title, genre, cover_url, description } = req.body;
-    try {
-        const token = req.cookies.token;
-        if (!token) {
-            return res.status(401).json({ message: 'Autenticación requerida' });
-        }
-        const trackFound = await getOneTrackByIdFromDatabase(track_id);
-        if (!trackFound){
-            return res.status(404).json({ message: 'No existe el track con el Id proporcionado' });
-        }
-        const userInSession = await getUserByToken(token);
-        if(userInSession.id !== trackFound.id){
-            return res.status(403).json({ message: 'No eres el propietario del track a actualizar' });
-        }
-        else{
-            const updatedTrackData = {
-                title,
-                genre,
-                cover_url,
-                description
-            }
-            const updateResult = await updateTrackFromDatabase(id, updatedTrackData);
-            if (updateResult) {
-                return res.status(200).json({ message: 'Track actualizado correctamente' });
-            } else {
-                return res.status(400).json({ message: 'Actualización fallida' });
-            }
-        }
-    } 
-    catch (error) {
-        console.log('Error en el controlador al actualizar un track');
         return res.status(500).json({ message: 'Error del servidor.', error: error.message });
     }
 };
@@ -361,6 +324,25 @@ const checkIfUserHasCommentedOneTrack = async (req, res) => {
     }
 };
 
+const downloadTrack = async (req, res) => {
+    try {
+        const { trackId } = req.params;
+        const track = await TrackModel.findById(trackId); // Suponiendo que usas Mongoose
+        if (!track) {
+            return res.status(404).send('Track con el id proporcionado no encontrado.');
+        }
+        const filename = `${track.title.replace(/[^a-zA-Z0-9]/g, '_')}.mp3`;
+        const fileStream = bucket.file(track.audioPath).createReadStream();
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        fileStream.pipe(res);
+    } catch (error) {
+        console.error('Error al descargar el track.');
+        return res.status(500).json({ message: 'Error del servidor.', error: error.message });
+    }
+}
+
+
 
 /*///////// EXPORTACIONES ////////*/
 export {
@@ -375,5 +357,6 @@ export {
     checkIfUserHasLikedOneTrack,
     createNewComment,
     getAllCommentsByTrackId,
-    checkIfUserHasCommentedOneTrack
+    checkIfUserHasCommentedOneTrack,
+    downloadTrack
 };
