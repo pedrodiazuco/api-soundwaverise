@@ -128,8 +128,8 @@ const deleteOneTrack = async (req, res) => {
             return res.status(401).json({ message: 'Token inválido', error: error.message  });
         }
         const userInSession = await findUserByIdIntoDatabase(decoded.id);
-
-        if (trackFound.user_id !== userInSession.user_id && userInSession.role !== 'superAdmin'){
+        console.log(trackFound.user.id +" === " + userInSession.id);
+        if (trackFound.user_id !== userInSession.id && userInSession.role !== 'superAdmin'){
             console.log('No eres el usuario indicado para eliminar un track.');
             return res.status(500).json({ message: 'No tienes acceso para eliminar el track.', error: error.message });
         }
@@ -175,7 +175,7 @@ const updateOneTrack = async (req, res) => {
             return res.status(404).json({ message: 'No existe el track con el Id proporcionado' });
         }
         const userInSession = await getUserByToken(token);
-        if(userInSession.user_id !== user_id){
+        if(userInSession.id !== trackFound.id){
             return res.status(403).json({ message: 'No eres el propietario del track a actualizar' });
         }
         else{
