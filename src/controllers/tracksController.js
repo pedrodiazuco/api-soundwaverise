@@ -324,7 +324,7 @@ const checkIfUserHasCommentedOneTrack = async (req, res) => {
     }
 };
 
-const downloadTrack = async (req, res) => {
+async function downloadTrack(req, res) {
     try {
         const { trackId } = req.params;
         const track = await TrackModel.findById(trackId); // Suponiendo que usas Mongoose
@@ -340,7 +340,7 @@ const downloadTrack = async (req, res) => {
         console.error('Error al descargar el track.');
         return res.status(500).json({ message: 'Error del servidor.', error: error.message });
     }
-}
+};
 
 
 

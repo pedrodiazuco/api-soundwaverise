@@ -15,7 +15,6 @@ import { checkIfUserHasCommentedOneTrack } from "../controllers/tracksController
 import { downloadTrack } from "../controllers/tracksController.js";
 import protect from '../middlewares/authMiddleware.js';
 
-
 /*///////// MIDDLEWARE MANEJADOR DE RUTAS ////////*/
 const router = express.Router();
 
